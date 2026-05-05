@@ -5,7 +5,7 @@
     <p class="lead">
       Centralizá productos y servicios en una sola plataforma web
     </p>
-    <button class="btn btn-primary btn-lg mt-3">
+    <button class="btn btn-primary btn-lg mt-3" (click)="verProductos()">
       Ver productos
     </button>
   </div>
@@ -13,33 +13,34 @@
 
 <!-- 📦 FEATURES -->
 <section class="container mt-5">
-  <div class="row text-center">
+  <div class="row row-cols-1 row-cols-md-3 g-3 text-center">
 
-    <div class="col-md-4">
-      <h3>🐶 Mascotas</h3>
-      <p>Registro y gestión de mascotas (próximamente)</p>
-    </div>
-
-    <div class="col-md-4">
-      <h3>📦 Productos</h3>
-      <p>Consulta de productos desde la API</p>
-    </div>
-
-    <div class="col-md-4">
-      <h3>👤 Usuarios</h3>
-      <p>Registro de clientes y control de datos</p>
-    </div>
+    @for (feature of features; track feature.titulo) {
+      <div class="col">
+        <div class="card-feature">
+          <h3>{{ feature.icono }} {{ feature.titulo }}</h3>
+          <p>{{ feature.descripcion }}</p>
+        </div>
+      </div>
+    }
 
   </div>
 </section>
 
 <!-- 🧠 SOBRE NOSOTROS -->
 <section class="container mt-5 text-center">
-  <h2>Quiénes Somos</h2>
+  <h2>Nunca más pierdas el control de la salud de tu mascota</h2>
   <p>
-    PetShop App nace como solución para digitalizar la gestión de veterinarias
-    y facilitar el control de mascotas, productos y servicios en un solo lugar.
-  </p>
+    En PetShop App cuidamos lo que más querés. 💙</p>
+  <p> Olvidate de los carnets en papel, las vacunas anotadas en cualquier lado y las fechas importantes que se pasan sin darte cuenta.
+
+Con nuestra plataforma podés registrar a tus mascotas, guardar su historial sanitario, controlar vacunas y desparasitaciones, y recibir recordatorios automáticos para que siempre estén protegidas.
+
+Toda la información de tu compañero de vida, segura y disponible desde cualquier dispositivo, cuando la necesites.</p>
+
+<ul>💙Más organización para vos.
+💙Más bienestar para ellos.</ul>
+
 </section>
 
 <!-- 📞 CONTACTO -->
@@ -47,7 +48,53 @@
   <h2>Contacto</h2>
   <p>¿Tenés dudas? Escribinos</p>
 
-  <input class="form-control mb-2" placeholder="Tu email">
-  <textarea class="form-control mb-2" placeholder="Mensaje"></textarea>
-  <button class="btn btn-success">Enviar</button>
+  @if (mensajeEnviado()) {
+    <div class="alert alert-success mt-3">
+      ✅ ¡Mensaje enviado con éxito! Te responderemos pronto.
+    </div>
+  } @else {
+    <form [formGroup]="contactForm" (ngSubmit)="enviarContacto()">
+
+      <input
+        class="form-control mb-2"
+        [class.is-invalid]="emailInvalido"
+        formControlName="email"
+        placeholder="Tu email"
+        type="email"
+      />
+      @if (emailInvalido) {
+        <div class="invalid-feedback d-block mb-2">
+          Ingresá un email válido.
+        </div>
+      }
+
+      <textarea
+        class="form-control mb-2"
+        [class.is-invalid]="mensajeInvalido"
+        formControlName="mensaje"
+        placeholder="Mensaje (mínimo 10 caracteres)"
+        rows="4"
+      ></textarea>
+      @if (mensajeInvalido) {
+        <div class="invalid-feedback d-block mb-2">
+          El mensaje debe tener al menos 10 caracteres.
+        </div>
+      }
+
+      <button
+        class="btn btn-success"
+        type="submit"
+        [disabled]="cargando()"
+      >
+        @if (cargando()) {
+          <span class="spinner-border spinner-border-sm me-2"></span>
+          Enviando...
+        } @else {
+          Enviar
+        }
+      </button>
+
+    </form>
+  }
+
 </section>

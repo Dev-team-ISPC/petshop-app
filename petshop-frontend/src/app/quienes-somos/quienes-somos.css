@@ -1,0 +1,31 @@
+.card-persona {
+  background: white;
+  border-radius: 16px;
+  padding: 28px 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  height: 100%;
+}
+
+.card-persona:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #e9ecef;
+}
+
+.badge-rol {
+  display: inline-block;
+  background: #e8f0fe;
+  color: #4e73df;
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
