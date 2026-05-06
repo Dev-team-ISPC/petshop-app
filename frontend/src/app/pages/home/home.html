@@ -1,4 +1,3 @@
-<!-- 🐾 HERO -->
 <section class="hero text-center">
   <div class="container">
     <h1 class="display-4">Gestión inteligente para tu mascota</h1>
@@ -11,7 +10,6 @@
   </div>
 </section>
 
-<!-- 📦 FEATURES -->
 <section class="container mt-5">
   <div class="row row-cols-1 row-cols-md-3 g-3 text-center">
 
@@ -27,7 +25,6 @@
   </div>
 </section>
 
-<!-- 🧠 SOBRE NOSOTROS -->
 <section class="container mt-5 text-center">
   <h2>Nunca más pierdas el control de la salud de tu mascota</h2>
   <p>
@@ -38,19 +35,21 @@ Con nuestra plataforma podés registrar a tus mascotas, guardar su historial san
 
 Toda la información de tu compañero de vida, segura y disponible desde cualquier dispositivo, cuando la necesites.</p>
 
-<ul>💙Más organización para vos.
-💙Más bienestar para ellos.</ul>
+<ul>
+  <li>Más organización para vos.</li>
+  <li>Más bienestar para ellos.</li>
+</ul>
 
 </section>
 
-<!-- 📞 CONTACTO -->
+
 <section class="container mt-5 text-center">
   <h2>Contacto</h2>
   <p>¿Tenés dudas? Escribinos</p>
 
   @if (mensajeEnviado()) {
     <div class="alert alert-success mt-3">
-      ✅ ¡Mensaje enviado con éxito! Te responderemos pronto.
+      ¡Mensaje enviado con éxito! Te responderemos pronto.
     </div>
   } @else {
     <form [formGroup]="contactForm" (ngSubmit)="enviarContacto()">
