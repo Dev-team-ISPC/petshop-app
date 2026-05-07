@@ -1,11 +1,11 @@
 # Node (Angular)
-Frontend/node_modules/
-Frontend/dist/
+frontend/node_modules/
+frontend/dist/
 
 # Python (Django)
-Backend/__pycache__/
-Backend/*.pyc
-Backend/db.sqlite3
+backend/__pycache__/
+backend/*.pyc
+backend/db.sqlite3
 
 # Env files
 .env
