@@ -12,12 +12,11 @@ import { CommonModule } from '@angular/common';
 })
 export class Home {
 
-  // --- Estado del formulario ---
+
   contactForm: FormGroup;
   mensajeEnviado = signal(false);
   cargando = signal(false);
 
-  // --- Features para el template ---
   features = [
     {
       icono: '🐶',
@@ -43,13 +42,11 @@ export class Home {
     });
   }
 
-  // --- Navegación ---
-  verProductos(): void {
+   verProductos(): void {
     this.router.navigate(['/products']);
   }
 
-  // --- Envío del formulario ---
-  enviarContacto(): void {
+    enviarContacto(): void {
     if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched();
       return;
@@ -57,7 +54,6 @@ export class Home {
 
     this.cargando.set(true);
 
-    // Simulación de envío (reemplazá con tu servicio real)
     setTimeout(() => {
       console.log('Formulario enviado:', this.contactForm.value);
       this.mensajeEnviado.set(true);
@@ -66,7 +62,7 @@ export class Home {
     }, 1500);
   }
 
-  // --- Helpers para validación en el template ---
+  // --- validación en el template ---
   get emailInvalido(): boolean {
     const ctrl = this.contactForm.get('email');
     return !!(ctrl?.invalid && ctrl?.touched);
