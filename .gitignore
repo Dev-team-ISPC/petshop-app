@@ -9,7 +9,6 @@ Backend/db.sqlite3
 
 # Env files
 .env
-.env_modelo
 
 # IDE
 .vscode/
