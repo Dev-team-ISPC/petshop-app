@@ -1,7 +1,7 @@
 # 🐾 Programador web - Sistema de Gestión - PetShop App
 Proyecto grupal para el módulo "programador web" de la tecnicatura en desarrollo web y aplicaciones digitales del ISPC . Está compuesto por tres espacios curriculares: Programación Web II, Programación II y Desarrollo de Software.
 
-## 👥 Equipo de Desarrollo
+##  Equipo de Desarrollo
 * LAUTARO NAHUEL ANCILLOTTI   | http://github.com/lnancillotti
 * CLAUDIO NICOLAS AUDICIO  | http://github.com/NicolasAudicio
 * ELIZABETH NORMA J. CHIALVA  | http://github.com/ElizabethChialva-22
@@ -10,16 +10,16 @@ Proyecto grupal para el módulo "programador web" de la tecnicatura en desarroll
 * MATIAS IBARRA  | http://github.com/MatiasRaulIbarra
 * FRANCISCO JUNCO  | http://github.com/FranJL075
 
-## 💻 Descripción del proyecto
+##  Descripción del proyecto
 Muchos dueños de mascotas enfrentan dificultades para organizar las vacunas, turnos y compras de sus animales. Por otro lado, las veterinarias pequeñas suelen llevar sus registros en papel, lo que genera pérdida de datos. Esta aplicación busca centralizar la gestión de mascotas y productos en una sola plataforma web.
 
-## 🚀 Tecnologías Utilizadas
-* **Frontend:** Angular 17/18
-* **Backend:** Django Rest Framework (Python 3.13)
-* **Base de Datos:** MySQL / MariaDB (vía XAMPP)
+##  Tecnologías Utilizadas
+* **Frontend:** Angular 21 - Boostrap 5
+* **Backend:** Django 6 - Django REST Framework
+* **Base de Datos:** MySQL 
 * **Gestión de Entorno:** Python-dotenv para seguridad de credenciales.
 
-## 📋 Requerimientos (Evidencia 1)
+## Requerimientos 
 
 ### Requerimientos Funcionales
 1. **Gestión de Mascotas:** Registro, edición y consulta de mascotas.
