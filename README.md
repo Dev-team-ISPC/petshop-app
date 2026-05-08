@@ -22,16 +22,17 @@ Muchos dueños de mascotas enfrentan dificultades para organizar las vacunas, tu
 ## Requerimientos 
 
 ### Requerimientos Funcionales
-1. **Gestión de Mascotas:** Registro, edición y consulta de mascotas.
-2. **Catálogo de Productos:** Visualización de productos disponibles.
-3. **Registro de Usuarios:** Sistema de alta para nuevos clientes.
-4. **Contacto:** Formulario para consultas directas.
-5. **Quiénes Somos:** Sección informativa sobre la misión de la Pet Shop.
+1. **Registro de Mascotas:** El sistema debe permitir al usuario registrar una mascota con nombre, especie, raza, edad y peso, y mostrar un mensaje de confirmación tras el registro exitoso.
+2. **Catálogo de Productos:** Permitir al usuario gestionar la selección de artículos en un carrito de compras y calcular el monto total de la operación según el stock disponible. 
+3. **Registro de Usuarios:** El sistema debe permitir al usuario registrar una cuenta con nombre, email único y contraseña de al menos 8 caracteres, rechazando el registro si el email ya existe.
+4. **Contacto:** El sistema debe permitir al usuario enviar un mensaje de contacto con nombre, email válido y texto de al menos 10 caracteres, confirmando el envío mediante un mensaje visible en pantalla.
+5. **Quiénes Somos:** El sistema deberá permitir al usuario consultar la información institucional de la Pet Shop mediante la sección “Quiénes Somos” disponible en la barra de navegación.
+6. **Acceso por Roles:** El sistema debe mostrar al usuario autenticado un panel personalizado según su rol (administrador, cliente o veterinario), con opciones y datos distintos para cada perfil.
 
 ### Requerimientos No Funcionales
-1. **Seguridad:** Uso de archivos `.env` para proteger claves de base de datos.
-2. **Arquitectura:** Separación clara entre Frontend (Angular) y Backend (Django).
-3. **Persistencia:** Uso obligatorio de motor de base de datos relacional (MySQL).
+1. **Seguridad:** El sistema debe garantizar que las credenciales de la base de datos no sean accesibles en el repositorio público, almacenándolas en variables de entorno definidas en un archivo `.env` excluido del control de versiones, de modo que cualquier intento de acceso al repositorio no exponga datos sensibles.
+2. **Arquitectura:** El sistema debe responder a cualquier solicitud de la API en menos de 500 milisegundos bajo condiciones normales de uso (un usuario concurrente en entorno local), medido desde el envío de la petición hasta la recepción de la respuesta.
+3. **Responsive** El sistema debe adaptarse correctamente a pantallas de ancho mínimo 320px y máximo 1920px, verificable mediante pruebas, sin pérdida de contenido ni superposición de elementos.
 
 ## 🛠️ Instalación y Configuración
 
