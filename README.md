@@ -34,7 +34,7 @@ Muchos dueños de mascotas enfrentan dificultades para organizar las vacunas, tu
 2. **Arquitectura:** El sistema debe responder a cualquier solicitud de la API en menos de 500 milisegundos bajo condiciones normales de uso (un usuario concurrente en entorno local), medido desde el envío de la petición hasta la recepción de la respuesta.
 3. **Responsive** El sistema debe adaptarse correctamente a pantallas de ancho mínimo 320px y máximo 1920px, verificable mediante pruebas, sin pérdida de contenido ni superposición de elementos.
 
-## 🛠️ Instalación y Configuración
+## Instalación y Configuración
 
 ### Backend
 1. Navegar a la carpeta `backend`.
@@ -47,10 +47,10 @@ Muchos dueños de mascotas enfrentan dificultades para organizar las vacunas, tu
 2. Instalar dependencias: `npm install`.
 3. Ejecutar servidor: `ng serve -o`.
 
-🤝 Metodología de Trabajo
+ Metodología de Trabajo
 
 El desarrollo del proyecto se realizó de forma colaborativa, utilizando control de versiones con Git y GitHub, distribución de tareas por módulos y reuniones periódicas para seguimiento del avance, integración y pruebas generales del sistema.
 
-✅ Estado del Proyecto
+Estado del Proyecto
 
 Actualmente la aplicación se encuentra en fase funcional inicial, cumpliendo con los requerimientos planteados en la primera etapa, con posibilidad de continuar escalando nuevas funcionalidades en futuras evidencias o versiones.
