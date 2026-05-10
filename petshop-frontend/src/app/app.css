@@ -12,6 +12,17 @@ app-root {
   min-height: 100vh;
 }
 
+.main-layout {
+  display: flex;
+  flex: 1;
+}
+
+.content-area {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
 .navbar {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
