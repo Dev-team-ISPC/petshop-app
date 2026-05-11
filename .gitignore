@@ -41,7 +41,6 @@ petshop-backend/db.sqlite3-journal
 
 # Environment files
 .env
-.env_modelo
 .env.local
 .env.development.local
 .env.test.local
