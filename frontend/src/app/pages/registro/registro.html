@@ -1,0 +1,68 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card p-4 shadow-sm">
+
+        <h2 class="text-center mb-4">Crear cuenta</h2>
+
+        <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
+
+          <div class="mb-3">
+            <input type="text" formControlName="nombre" class="form-control" placeholder="Ej: Juan Perez">
+            <label class="form-label">Nombre completo</label>
+              @if (Nombre?.errors && Nombre?.touched) {
+              @if (Nombre?.hasError('required')) {
+              <p class="text-danger">El nombre es requerido.</p>
+              } @else if (Nombre?.hasError('minlength')) {
+                <p class="text-danger">El nombre debe tener al menos 2 caracteres.</p>
+              }
+            }
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Correo electronico</label>
+            <input type="email" formControlName="email" class="form-control" placeholder="nombre@ejemplo.com">
+              @if (Email?.errors && Email?.touched) {
+              @if (Email?.hasError('required')) {
+                <p class="text-danger">El email es requerido.</p>
+              } @else if (Email?.hasError('email')) {
+                <p class="text-danger">El formato del email debe ser valido.</p>
+              }
+            }
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Contrasena</label>
+            <input type="password" formControlName="password" class="form-control" placeholder="Minimo 8 caracteres">
+              @if (Password?.errors && Password?.touched) {
+              @if (Password?.hasError('required')) {
+                <p class="text-danger">La contrasena es requerida.</p>
+              } @else if (Password?.hasError('minlength')) {
+                <p class="text-danger">La contrasena debe tener al menos 8 caracteres.</p>
+              }
+            }
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Confirmar contrasena</label>
+            <input type="password" formControlName="confirmarPassword" class="form-control" placeholder="Repetir contrasena">
+              @if (ConfirmarPassword?.errors && ConfirmarPassword?.touched) {
+              @if (ConfirmarPassword?.hasError('required')) {
+                <p class="text-danger">Debe confirmar la contrasena.</p>
+              }
+            }
+          </div>
+
+          <button type="submit" class="w-100 btn btn-lg btn-primary">Registrarse</button>
+
+        </form>
+
+        <p class="text-center mt-3">
+          Ya tenes cuenta?
+          <a (click)="irALogin()" style="cursor:pointer" class="text-primary">Iniciá sesion</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>

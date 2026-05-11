@@ -15,11 +15,14 @@
 
     @for (feature of features; track feature.titulo) {
       <div class="col">
-        <div class="card-feature">
+        <div class="card-feature"
+          [routerLink]="feature.ruta">
+
           <h3>{{ feature.icono }} {{ feature.titulo }}</h3>
           <p>{{ feature.descripcion }}</p>
         </div>
       </div>
+
     }
 
   </div>
