@@ -2,11 +2,12 @@ import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -21,17 +22,20 @@ export class Home {
     {
       icono: '🐶',
       titulo: 'Mascotas',
-      descripcion: 'Registro y gestión de mascotas (próximamente)',
+      descripcion: 'Registro y gestión de mascotas',
+      ruta: '/mascotas'
     },
     {
       icono: '📦',
       titulo: 'Productos',
       descripcion: 'Consulta de productos desde la API',
+      ruta: '/productos'
     },
     {
       icono: '👤',
       titulo: 'Usuarios',
       descripcion: 'Registro de clientes y control de datos',
+      ruta: '/registro'
     },
   ];
 
