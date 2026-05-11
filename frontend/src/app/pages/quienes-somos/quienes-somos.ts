@@ -11,9 +11,10 @@ import { QuienesSomosService } from '../../services/quienes-somos.service';
 })
 export class QuienesSomosComponent {
 
-  equipo: any;
+  equipo: any[] = [];
 
   constructor(private quienesSomosService: QuienesSomosService) {
     this.equipo = this.quienesSomosService.obtenerProfesionales();
   }
+
 }
