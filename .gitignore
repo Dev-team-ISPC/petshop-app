@@ -1,15 +1,130 @@
-# Node (Angular)
-Frontend/node_modules/
-Frontend/dist/
+# Frontend (Angular)
+petshop-frontend/node_modules/
+petshop-frontend/dist/
+petshop-frontend/.angular/
+petshop-frontend/.nx/cache
+petshop-frontend/package-lock.json
+petshop-frontend/yarn.lock
+petshop-frontend/npm-debug.log*
+petshop-frontend/yarn-debug.log*
+petshop-frontend/yarn-error.log*
+petshop-frontend/lerna-debug.log*
+petshop-frontend/.pnpm-debug.log*
+petshop-frontend/report.*
+petshop-frontend/*.tgz
+petshop-frontend/*.tar.gz
 
-# Python (Django)
-Backend/__pycache__/
-Backend/*.pyc
-Backend/db.sqlite3
+# Backend (Python/Django)
+petshop-backend/__pycache__/
+petshop-backend/*.py[cod]
+petshop-backend/*$py.class
+petshop-backend/*.so
+petshop-backend/.Python
+petshop-backend/build/
+petshop-backend/develop-eggs/
+petshop-backend/dist/
+petshop-backend/downloads/
+petshop-backend/eggs/
+petshop-backend/.eggs/
+petshop-backend/lib/
+petshop-backend/lib64/
+petshop-backend/parts/
+petshop-backend/sdist/
+petshop-backend/var/
+petshop-backend/wheels/
+petshop-backend/*.egg-info/
+petshop-backend/.installed.cfg
+petshop-backend/*.egg
+petshop-backend/MANIFEST
+petshop-backend/db.sqlite3
+petshop-backend/db.sqlite3-journal
 
-# Env files
+# Environment files
 .env
+.env_modelo
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# IDE
+# IDE and editors
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env.test
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# next.js build output
+.next
+
+# nuxt.js build output
+.nuxt
+
+# vuepress build output
+.vuepress/dist
+
+# Serverless directories
+.serverless
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
