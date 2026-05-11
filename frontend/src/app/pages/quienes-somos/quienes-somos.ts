@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { QuienesSomosService } from '../../services/quienes-somos';
+import { QuienesSomosService } from '../../services/quienes-somos.service';
 
 @Component({
   selector: 'app-quienes-somos',

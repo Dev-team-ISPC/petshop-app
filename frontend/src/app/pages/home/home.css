@@ -33,3 +33,8 @@ section {
 .card-feature:hover {
   transform: translateY(-5px);
 }
+
+ul {
+  list-style: none;
+  padding: 0;
+}
