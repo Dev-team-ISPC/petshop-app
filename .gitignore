@@ -1,43 +1,43 @@
 # Frontend (Angular)
-frontend/node_modules/
-frontend/dist/
-frontend/.angular/
-frontend/.nx/cache
-frontend/package-lock.json
-frontend/yarn.lock
-frontend/npm-debug.log*
-frontend/yarn-debug.log*
-frontend/yarn-error.log*
-frontend/lerna-debug.log*
-frontend/.pnpm-debug.log*
-frontend/report.*
-frontend/*.tgz
-frontend/*.tar.gz
+petshop-frontend/node_modules/
+petshop-frontend/dist/
+petshop-frontend/.angular/
+petshop-frontend/.nx/cache
+petshop-frontend/package-lock.json
+petshop-frontend/yarn.lock
+petshop-frontend/npm-debug.log*
+petshop-frontend/yarn-debug.log*
+petshop-frontend/yarn-error.log*
+petshop-frontend/lerna-debug.log*
+petshop-frontend/.pnpm-debug.log*
+petshop-frontend/report.*
+petshop-frontend/*.tgz
+petshop-frontend/*.tar.gz
 
 # Backend (Python/Django)
-backend/__pycache__/
-backend/*.py[cod]
-backend/*$py.class
-backend/*.so
-backend/.Python
-backend/build/
-backend/develop-eggs/
-backend/dist/
-backend/downloads/
-backend/eggs/
-backend/.eggs/
-backend/lib/
-backend/lib64/
-backend/parts/
-backend/sdist/
-backend/var/
-backend/wheels/
-backend/*.egg-info/
-backend/.installed.cfg
-backend/*.egg
-backend/MANIFEST
-backend/db.sqlite3
-backend/db.sqlite3-journal
+petshop-backend/__pycache__/
+petshop-backend/*.py[cod]
+petshop-backend/*$py.class
+petshop-backend/*.so
+petshop-backend/.Python
+petshop-backend/build/
+petshop-backend/develop-eggs/
+petshop-backend/dist/
+petshop-backend/downloads/
+petshop-backend/eggs/
+petshop-backend/.eggs/
+petshop-backend/lib/
+petshop-backend/lib64/
+petshop-backend/parts/
+petshop-backend/sdist/
+petshop-backend/var/
+petshop-backend/wheels/
+petshop-backend/*.egg-info/
+petshop-backend/.installed.cfg
+petshop-backend/*.egg
+petshop-backend/MANIFEST
+petshop-backend/db.sqlite3
+petshop-backend/db.sqlite3-journal
 
 # Environment files
 .env
@@ -127,4 +127,8 @@ jspm_packages/
 .tern-port
 
 # Stores VSCode versions used for testing VSCode extensions
+<<<<<<< HEAD
 .vscode-test
+=======
+.vscode-test
+>>>>>>> main

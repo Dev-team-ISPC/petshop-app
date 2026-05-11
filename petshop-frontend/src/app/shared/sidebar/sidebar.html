@@ -1,0 +1,38 @@
+<div class="sidebar-container">
+  <button class="hamburger-btn" (click)="toggleMenu()" [class.active]="isMenuOpen()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <aside class="sidebar" [class.open]="isMenuOpen()">
+    <div class="sidebar-overlay" (click)="closeMenu()"></div>
+    <div class="sidebar-content">
+      <div class="sidebar-header">
+        <h3>🐾 PetShop</h3>
+        <button class="close-btn" (click)="closeMenu()">×</button>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a routerLink="/home" class="sidebar-link" (click)="closeMenu()">🏠 Inicio</a>
+        <a routerLink="/productos" class="sidebar-link" (click)="closeMenu()">🛍️ Productos</a>
+        <a routerLink="/servicios" class="sidebar-link" (click)="closeMenu()">✂️ Servicios</a>
+        <a routerLink="/contacto" class="sidebar-link" (click)="closeMenu()">📞 Contacto</a>
+        <a routerLink="/quienes-somos" class="sidebar-link" (click)="closeMenu()">ℹ️ Quienes Somos</a>
+      </nav>
+      
+      <div class="sidebar-info">
+        <h4>Horarios</h4>
+        <p>Lunes a Viernes: 9:00 - 18:00</p>
+        <p>Sábados: 9:00 - 13:00</p>
+        <p>Domingos: Cerrado</p>
+      </div>
+      
+      <div class="sidebar-contact">
+        <h4>Contacto Rápido</h4>
+        <p>📱 +54 9 11 1234-5678</p>
+        <p>📧 info@petshop.com</p>
+      </div>
+    </div>
+  </aside>
+</div>
