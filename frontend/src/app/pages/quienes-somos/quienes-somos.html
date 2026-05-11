@@ -1,0 +1,25 @@
+<section class="py-5 bg-light">
+  <div class="container">
+
+    <div class="text-center mb-5">
+      <h2 class="display-5 fw-bold text-primary">Nuestro Equipo</h2>
+      <p class="lead text-muted">Las personas detrás de PetShop App</p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 justify-content-center">
+
+      @for (persona of equipo; track persona.nombre) {
+        <div class="col">
+          <div class="card-persona text-center">
+            <img [src]="persona.foto" [alt]="persona.nombre" class="avatar mb-3" />
+            <h5 class="fw-bold mb-1">{{ persona.nombre }}</h5>
+            <span class="badge-rol">{{ persona.rol }}</span>
+            <p class="text-muted mt-2 small">{{ persona.descripcion }}</p>
+          </div>
+        </div>
+      }
+
+    </div>
+
+  </div>
+</section>

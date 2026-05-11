@@ -1,0 +1,80 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card p-4 shadow-sm">
+
+        <h2 class="text-center mb-4">Registrar Mascota</h2>
+
+        <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
+
+          <div class="form-floating mb-3">
+            <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre">
+            <label>Nombre de la mascota</label>
+            @if (Nombre?.errors && Nombre?.touched) {
+              @if (Nombre?.hasError('required')) {
+                <p class="text-danger">El nombre es requerido.</p>
+              } @else if (Nombre?.hasError('minlength')) {
+                <p class="text-danger">El nombre debe tener al menos 2 caracteres.</p>
+              }
+            }
+          </div>
+
+          <div class="form-floating mb-3">
+            <select formControlName="especie" class="form-select">
+              <option value="">Selecciona una especie</option>
+              @for (especie of especies; track especie) {
+                <option [value]="especie">{{ especie }}</option>
+              }
+            </select>
+            <label>Especie</label>
+            @if (Especie?.errors && Especie?.touched) {
+              @if (Especie?.hasError('required')) {
+                <p class="text-danger">La especie es requerida.</p>
+              }
+            }
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" formControlName="raza" class="form-control" placeholder="Raza">
+            <label>Raza</label>
+            @if (Raza?.errors && Raza?.touched) {
+              @if (Raza?.hasError('required')) {
+                <p class="text-danger">La raza es requerida.</p>
+              } @else if (Raza?.hasError('minlength')) {
+                <p class="text-danger">La raza debe tener al menos 2 caracteres.</p>
+              }
+            }
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="number" formControlName="edad" class="form-control" placeholder="Edad">
+            <label>Edad (años)</label>
+            @if (Edad?.errors && Edad?.touched) {
+              @if (Edad?.hasError('required')) {
+                <p class="text-danger">La edad es requerida.</p>
+              } @else if (Edad?.hasError('min') || Edad?.hasError('max')) {
+                <p class="text-danger">La edad debe estar entre 0 y 30 años.</p>
+              }
+            }
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="number" formControlName="peso" class="form-control" placeholder="Peso" step="0.1">
+            <label>Peso (kg)</label>
+            @if (Peso?.errors && Peso?.touched) {
+              @if (Peso?.hasError('required')) {
+                <p class="text-danger">El peso es requerido.</p>
+              } @else if (Peso?.hasError('min') || Peso?.hasError('max')) {
+                <p class="text-danger">El peso debe estar entre 0.1 y 200 kg.</p>
+              }
+            }
+          </div>
+
+          <button type="submit" class="w-100 btn btn-lg btn-primary">Registrar Mascota</button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
