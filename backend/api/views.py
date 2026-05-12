@@ -1,13 +1,13 @@
 from django.http import JsonResponse
 from rest_framework import viewsets
-from .models import User
-from .serializers import UserSerializer
+from .models import Usuario
+from .serializers import UsuarioSerializer
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+class UsuarioViewSet(viewsets.ModelViewSet):
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializer
 
 def home(request):
     return JsonResponse({
-        "message": "Bienvenido a la petshop, consultar /users para ver los usuarios"
+        "message": "Bienvenido a la petshop, consultar /usuarios para ver los usuarios"
     })
