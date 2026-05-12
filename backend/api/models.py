@@ -1,9 +1,10 @@
 from django.db import models
 
-class User(models.Model):
+class Usuario(models.Model):
+    id_usuario = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    role = models.CharField(
+    rol = models.CharField(
         max_length=15,
         choices=[
             ('admin', 'administrador'),
@@ -11,5 +12,54 @@ class User(models.Model):
         ],
         default='cliente'
     )
-    def __str__(self):
-        return self.name
+    telefono = models.CharField(max_length=20)
+    direccion = models.CharField(max_length=100)
+
+class Mascota(models.Model):
+    nombre = models.CharField(max_length=100)
+    especie = models.CharField(max_length=50)
+    raza = models.CharField(max_length=50)
+    peso = models.IntegerField()
+    fecha_nacimiento = models.DateField()
+    id_dueno = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='mascotas')
+
+class Turno(models.Model):
+    id_turno = models.AutoField(primary_key=True)
+    id_mascota = models.ForeignKey(Mascota, on_delete=models.CASCADE, related_name='turnos')
+    fecha = models.DateField()
+    motivo = models.CharField(max_length=200)
+    estado = models.CharField(
+        max_length=15,
+        choices=[
+            ('pendiente', 'Pendiente'),
+            ('confirmado', 'Confirmado'),
+            ('cancelado', 'Cancelado'),
+        ],
+    )
+    observaciones = models.TextField(blank=True, null=True)
+
+class Vacunacion(models.Model):
+    id_vacunacion = models.AutoField(primary_key=True)
+    id_mascota = models.ForeignKey(Mascota, on_delete=models.CASCADE, related_name='vacunaciones')
+    id_vacuna = models.ForeignKey(Mascota, on_delete=models.CASCADE, related_name='vacunas')
+    fecha_aplicacion = models.DateField()
+    proxima_dosis = models.DateField(blank=True, null=True)
+    veterinario = models.CharField(max_length=100)
+
+class Vacuna(models.Model):
+    id_vacuna = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    frecuencia = models.CharField(max_length=50)
+
+class Categoria(models.Model):
+    id_categoria = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=100)
+
+class Producto(models.Model):
+    id_producto = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    stock = models.IntegerField()
+    id_categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='productos')

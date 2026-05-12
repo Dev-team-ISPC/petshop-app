@@ -38,10 +38,12 @@ petshop-backend/*.egg
 petshop-backend/MANIFEST
 petshop-backend/db.sqlite3
 petshop-backend/db.sqlite3-journal
+petshop-backend/venv/
+backend/venv/
+venv/
 
 # Environment files
 .env
-.env_modelo
 .env.local
 .env.development.local
 .env.test.local
