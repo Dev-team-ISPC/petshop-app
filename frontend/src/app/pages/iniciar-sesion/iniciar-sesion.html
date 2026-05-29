@@ -22,24 +22,34 @@ El formato del email debe ser válido.
 </p>
 }
 }
+@else if (Email?.hasError('maxlength'))
+{
+<p class="text-danger">
+El email supera el máximo permitido.
+</p>
+}
    </div>
    <div class="form-floating">
       <input
       type="password"
       formControlName="password"
       class="form-control"
-      placeholder="Password">
+      placeholder="Ingrese la contraseña">
       <label for="floatingPassword">Contraseña</label>
       @if(Password?.errors && Password?.touched)
 {
       @if(Password?.hasError('required'))
 {
-<p class="text-danger"> El Password es requerido. </p>
+<p class="text-danger"> La contraseña es obligatoria. </p>
 }
       @else if (Password?.hasError('minlength') )
 {
-<p class="text-danger"> El Password requiere como mínimo 8 caracteres. </p>
+<p class="text-danger"> La contraseña requiere como mínimo 8 caracteres. </p>
 }
+}
+      @else if (Password?.hasError('maxlength'))
+{
+<p class="text-danger"> La contraseña supera el máximo permitido. </p>
 }
    </div>
    <div class="checkbox mb-3">

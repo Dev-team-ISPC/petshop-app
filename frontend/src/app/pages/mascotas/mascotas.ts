@@ -17,9 +17,9 @@ export class MascotasComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      nombre: ['', [Validators.required, Validators.minLength(2)], []],
-      especie: ['', [Validators.required], []],
-      raza: ['', [Validators.required, Validators.minLength(2)], []],
+      nombre: ['', [ Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/) ], []],
+      especie: ['', [ Validators.required], []],
+      raza: ['', [ Validators.required, Validators.minLength(2), Validators.maxLength(50), Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/) ], []],
       edad: ['', [Validators.required, Validators.min(0), Validators.max(30)], []],
       peso: ['', [Validators.required, Validators.min(0.1), Validators.max(200)], []]
     });
@@ -32,12 +32,12 @@ export class MascotasComponent {
   get Peso() { return this.form.get('peso'); }
 
   onEnviar(event: Event) {
-    console.log(this.form.value);
-    event.preventDefault;
-    if (this.form.valid) {
-      alert('Mascota registrada con exito!');
-    } else {
+    event.preventDefault();
+    if (this.form.invalid) {
       this.form.markAllAsTouched();
+      return;
     }
+    console.log(this.form.value);
+    alert('Mascota registrada con éxito!');
   }
 }

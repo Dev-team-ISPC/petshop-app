@@ -18,8 +18,8 @@ export class RegistroComponent {
     this.form = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmarPassword: ['', [Validators.required]]
+      contrasena: ['', [Validators.required, Validators.minLength(8)]],
+      confirmarContrasena: ['', [Validators.required]]
     });
   }
 
@@ -31,17 +31,17 @@ export class RegistroComponent {
     return this.form.get('email');
   }
 
-  get Password() {
-    return this.form.get('contraseña');
+  get Contrasena() {
+    return this.form.get('contrasena');
   }
 
-  get ConfirmarPassword() {
-    return this.form.get('confirmarContraseña');
+  get ConfirmarContrasena() {
+    return this.form.get('confirmarContrasena');
   }
 
   onEnviar(event: Event) {
     console.log(this.form.value);
-    event.preventDefault;
+    event.preventDefault();
     if (this.form.valid) {
       alert('Registro exitoso!');
     } else {
