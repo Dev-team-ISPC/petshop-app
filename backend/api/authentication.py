@@ -1,6 +1,6 @@
 from rest_framework.authentication import BaseAuthentication
 from rest_framework.exceptions import AuthenticationFailed
-from .models import User
+from .models import Usuario
 
 class TokenAuthentication(BaseAuthentication):
     def authenticate(self, request):
@@ -9,7 +9,7 @@ class TokenAuthentication(BaseAuthentication):
             return None
         token = auth_header[6:]
         try:
-            user = User.objects.get(token=token)
+            user = Usuario.objects.get(token=token)
             return (user, token)
-        except User.DoesNotExist:
+        except Usuario.DoesNotExist:
             raise AuthenticationFailed('Token inválido.')

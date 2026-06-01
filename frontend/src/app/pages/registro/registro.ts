@@ -4,10 +4,10 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
-function passwordsCoinciden(control: AbstractControl): ValidationErrors | null {
-  const password = control.get('password')?.value;
-  const confirmar = control.get('confirmarPassword')?.value;
-  return password === confirmar ? null : { passwordsMismatch: true };
+function contrasenaCoincide(control: AbstractControl): ValidationErrors | null {
+  const contrasena = control.get('contrasena')?.value;
+  const confirmar = control.get('confirmarContrasena')?.value;
+  return contrasena === confirmar ? null : { passwordsMismatch: true };
 }
 
 @Component({
@@ -33,13 +33,13 @@ export class RegistroComponent {
       email: ['', [Validators.required, Validators.email]],
       contrasena: ['', [Validators.required, Validators.minLength(8)]],
       confirmarContrasena: ['', [Validators.required]]
-    });
+    }, { validators: contrasenaCoincide });
   }
 
   get Nombre() { return this.form.get('nombre'); }
   get Email() { return this.form.get('email'); }
-  get Password() { return this.form.get('password'); }
-  get ConfirmarPassword() { return this.form.get('confirmarPassword'); }
+  get Contrasena() { return this.form.get('contrasena'); }
+  get ConfirmarContrasena() { return this.form.get('confirmarContrasena'); }
 
   onEnviar(event: Event): void {
     event.preventDefault();
@@ -47,8 +47,8 @@ export class RegistroComponent {
     this.mensajeError = '';
 
     if (this.form.valid) {
-      const { nombre, email, password } = this.form.value;
-      this.userService.register(nombre, email, password).subscribe({
+      const { nombre, email, contrasena } = this.form.value;
+      this.userService.register(nombre, email, contrasena).subscribe({
         next: () => {
           this.mensajeExito = 'Registro exitoso. Redirigiendo...';
           setTimeout(() => this.router.navigate(['/iniciar-sesion']), 1500);
