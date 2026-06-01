@@ -51,6 +51,9 @@
                 <p class="text-danger">Debe confirmar la contrasena.</p>
               }
             }
+            @if (form.hasError('passwordsMismatch') && ConfirmarPassword?.touched) {
+              <p class="text-danger">Las contraseñas no coinciden.</p>
+            }
           </div>
 
           <button type="submit" class="w-100 btn btn-lg btn-primary">Registrarse</button>
