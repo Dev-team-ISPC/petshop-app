@@ -33,7 +33,7 @@ export class MascotasComponent {
 
   onEnviar(event: Event) {
     console.log(this.form.value);
-    event.preventDefault;
+    event.preventDefault();
     if (this.form.valid) {
       alert('Mascota registrada con exito!');
     } else {

@@ -5,6 +5,7 @@ import { QuienesSomosComponent } from './pages/quienes-somos/quienes-somos';
 import { RegistroComponent } from './pages/registro/registro';
 import { IniciarSesion } from './pages/iniciar-sesion/iniciar-sesion';
 import { MascotasComponent } from './pages/mascotas/mascotas';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -12,6 +13,6 @@ export const routes: Routes = [
   { path: 'quienes-somos', component: QuienesSomosComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'iniciar-sesion', component: IniciarSesion },
-  { path:  'mascotas', component: MascotasComponent },
+  { path: 'mascotas', component: MascotasComponent, canActivate: [authGuard] },
   { path: '**', redirectTo: '' }
 ];
