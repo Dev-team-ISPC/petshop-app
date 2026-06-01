@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import type { LoginResponse } from '../../services/user.service';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -36,10 +37,11 @@ export class IniciarSesion {
     if (this.form.valid) {
       const { email, password } = this.form.value;
       this.userService.login(email, password).subscribe({
-        next: (res) => {
+        next: (res: LoginResponse) => {
           localStorage.setItem('token', res.token);
-          localStorage.setItem('role', res.user.role ?? 'cliente');
-          this.router.navigate(['/']);
+          const role = res.user.role ?? 'cliente';
+          localStorage.setItem('role', role);
+          this.router.navigate(['/dashboard']);
         },
         error: () => {
           this.mensajeError = 'Email o contraseña incorrectos.';
