@@ -32,27 +32,51 @@
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Contrasena</label>
-            <input type="password" formControlName="password" class="form-control" placeholder="Minimo 8 caracteres">
-              @if (Password?.errors && Password?.touched) {
-              @if (Password?.hasError('required')) {
-                <p class="text-danger">La contrasena es requerida.</p>
-              } @else if (Password?.hasError('minlength')) {
-                <p class="text-danger">La contrasena debe tener al menos 8 caracteres.</p>
+
+            <label class="form-label">Contraseña</label>
+
+            <input
+              type="password"
+              formControlName="contrasena"
+              class="form-control"
+              placeholder="Mínimo 8 caracteres">
+
+            @if (Contrasena?.errors && Contrasena?.touched) {
+
+              @if (Contrasena?.hasError('required')) {
+                <p class="text-danger">
+                  La contraseña es requerida.
+                </p>
               }
+
+              @else if (Contrasena?.hasError('minlength')) {
+                <p class="text-danger">
+                  La contraseña debe tener al menos 8 caracteres.
+                </p>
+              }
+
             }
+
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Confirmar contrasena</label>
-            <input type="password" formControlName="confirmarPassword" class="form-control" placeholder="Repetir contrasena">
-              @if (ConfirmarPassword?.errors && ConfirmarPassword?.touched) {
-              @if (ConfirmarPassword?.hasError('required')) {
-                <p class="text-danger">Debe confirmar la contrasena.</p>
+
+            <label class="form-label">Confirmar contraseña</label>
+
+            <input
+              type="password"
+              formControlName="confirmarContrasena"
+              class="form-control"
+              placeholder="Repetir contraseña">
+
+            @if (ConfirmarContrasena?.errors && ConfirmarContrasena?.touched) {
+
+              @if (ConfirmarContrasena?.hasError('required')) {
+                <p class="text-danger">
+                  Debe confirmar la contraseña.
+                </p>
               }
-            }
-            @if (form.hasError('passwordsMismatch') && ConfirmarPassword?.touched) {
-              <p class="text-danger">Las contraseñas no coinciden.</p>
+
             }
           </div>
 

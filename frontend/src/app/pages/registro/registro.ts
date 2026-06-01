@@ -31,9 +31,9 @@ export class RegistroComponent {
     this.form = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmarPassword: ['', [Validators.required]]
-    }, { validators: passwordsCoinciden });
+      contrasena: ['', [Validators.required, Validators.minLength(8)]],
+      confirmarContrasena: ['', [Validators.required]]
+    });
   }
 
   get Nombre() { return this.form.get('nombre'); }
