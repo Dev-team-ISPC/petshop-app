@@ -1,12 +1,10 @@
-from django.urls import path, include
-from .views import (home, UsuarioViewSet, MascotaViewSet, TurnoViewSet, VacunacionViewSet, VacunaViewSet,
-                    CategoriaViewSet,ProductoViewSet)
-
-
-
+from django.urls import path
+from .views import (home, login, UsuarioViewSet, MascotaViewSet, TurnoViewSet,
+                    VacunacionViewSet, VacunaViewSet, CategoriaViewSet, ProductoViewSet)
 
 urlpatterns = [
     path('', home),
+    path('login/', login),
     path('usuarios/', UsuarioViewSet.as_view()),
     path('mascotas/', MascotaViewSet.as_view()),
     path('turnos/', TurnoViewSet.as_view()),

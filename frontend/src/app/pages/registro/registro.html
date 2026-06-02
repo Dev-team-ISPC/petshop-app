@@ -70,15 +70,13 @@
               placeholder="Repetir contraseña">
 
             @if (ConfirmarContrasena?.errors && ConfirmarContrasena?.touched) {
-
               @if (ConfirmarContrasena?.hasError('required')) {
-                <p class="text-danger">
-                  Debe confirmar la contraseña.
-                </p>
+                <p class="text-danger">Debe confirmar la contraseña.</p>
               }
-
             }
-
+            @if (form.hasError('passwordsMismatch') && ConfirmarContrasena?.touched) {
+              <p class="text-danger">Las contraseñas no coinciden.</p>
+            }
           </div>
 
           <button type="submit" class="w-100 btn btn-lg btn-primary">Registrarse</button>

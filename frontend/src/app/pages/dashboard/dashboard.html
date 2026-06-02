@@ -1,0 +1,65 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Panel de control</h2>
+    <button class="btn btn-outline-secondary btn-sm" (click)="cerrarSesion()">Cerrar sesión</button>
+  </div>
+
+  @if (role === 'admin') {
+    <div class="row g-3 mb-4">
+      <div class="col-md-4">
+        <div class="card text-center p-3 shadow-sm">
+          <h5 class="text-muted">Usuarios</h5>
+          <p class="fs-3 fw-bold mb-0">—</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center p-3 shadow-sm">
+          <h5 class="text-muted">Mascotas</h5>
+          <p class="fs-3 fw-bold mb-0">—</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center p-3 shadow-sm">
+          <h5 class="text-muted">Productos</h5>
+          <p class="fs-3 fw-bold mb-0">—</p>
+        </div>
+      </div>
+    </div>
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Tabla de productos</h5>
+        <p class="text-muted">Sin datos aún.</p>
+      </div>
+    </div>
+  }
+
+  @if (role === 'cliente') {
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Mis mascotas</h5>
+            <p class="text-muted">Sin mascotas registradas.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Productos recomendados</h5>
+            <p class="text-muted">Sin productos disponibles.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (role === 'veterinario') {
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Pacientes</h5>
+        <p class="text-muted">Sin pacientes registrados.</p>
+      </div>
+    </div>
+  }
+</div>
