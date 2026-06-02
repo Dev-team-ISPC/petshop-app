@@ -62,6 +62,35 @@ class MascotaViewSet(APIView):
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 
+class MascotaDetailViewSet(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, pk):
+        try:
+            mascota = Mascota.objects.get(pk=pk)
+        except Mascota.DoesNotExist:
+            return Response({'error': 'No encontrada.'}, status=404)
+        return Response(MascotaSerializer(mascota).data)
+
+    def put(self, request, pk):
+        try:
+            mascota = Mascota.objects.get(pk=pk)
+        except Mascota.DoesNotExist:
+            return Response({'error': 'No encontrada.'}, status=404)
+        serializer = MascotaSerializer(mascota, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
+
+    def delete(self, request, pk):
+        try:
+            mascota = Mascota.objects.get(pk=pk)
+        except Mascota.DoesNotExist:
+            return Response({'error': 'No encontrada.'}, status=404)
+        mascota.delete()
+        return Response(status=204)
+
 class TurnoViewSet(APIView):
     permission_classes = [IsAuthenticated]
 
