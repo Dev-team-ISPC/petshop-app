@@ -16,6 +16,10 @@ class UsuarioViewSet(APIView):
 
     def post(self, request):
         serializer = UsuarioSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
 
 
 class MascotaViewSet(APIView):
