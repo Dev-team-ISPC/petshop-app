@@ -8,15 +8,34 @@
         <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
 
           <div class="form-floating mb-3">
-            <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre">
+            <input
+              type="text"
+              formControlName="nombre"
+              class="form-control"
+              placeholder="Nombre">
+
             <label>Nombre de la mascota</label>
+
             @if (Nombre?.errors && Nombre?.touched) {
+
               @if (Nombre?.hasError('required')) {
                 <p class="text-danger">El nombre es requerido.</p>
-              } @else if (Nombre?.hasError('minlength')) {
+              }
+
+              @else if (Nombre?.hasError('minlength')) {
                 <p class="text-danger">El nombre debe tener al menos 2 caracteres.</p>
               }
+
+              @else if (Nombre?.hasError('maxlength')) {
+                <p class="text-danger">El nombre no puede superar los 30 caracteres.</p>
+              }
+
+              @else if (Nombre?.hasError('pattern')) {
+                <p class="text-danger">Solo se permiten letras y espacios.</p>
+              }
+
             }
+
           </div>
 
           <div class="form-floating mb-3">
@@ -38,14 +57,25 @@
             <input type="text" formControlName="raza" class="form-control" placeholder="Raza">
             <label>Raza</label>
             @if (Raza?.errors && Raza?.touched) {
+
               @if (Raza?.hasError('required')) {
                 <p class="text-danger">La raza es requerida.</p>
-              } @else if (Raza?.hasError('minlength')) {
+              }
+
+              @else if (Raza?.hasError('minlength')) {
                 <p class="text-danger">La raza debe tener al menos 2 caracteres.</p>
               }
+
+              @else if (Raza?.hasError('maxlength')) {
+                <p class="text-danger">La raza no puede superar los 50 caracteres.</p>
+              }
+
+              @else if (Raza?.hasError('pattern')) {
+                <p class="text-danger">Solo se permiten letras y espacios.</p>
+              }
+
             }
           </div>
-
           <div class="form-floating mb-3">
             <input type="number" formControlName="edad" class="form-control" placeholder="Edad">
             <label>Edad (años)</label>

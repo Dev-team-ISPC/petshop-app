@@ -34,6 +34,7 @@ export class RegistroComponent {
     }, { validators: repetirPasswordValidator });
   }
 
+  // Getters para las validaciones en el HTML
   get Nombre() { return this.form.get('nombre'); }
   get Email() { return this.form.get('email'); }
   get Telefono() { return this.form.get('telefono'); }
@@ -46,11 +47,13 @@ export class RegistroComponent {
     this.errorServer = null;
     this.exitoMsg = null;
 
+    // Si el formulario es inválido, marcamos los campos y frenamos la ejecución
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
+    // Mapeamos los campos del formulario al modelo Usuario
     const nuevoUsuario: Usuario = {
       name: this.form.value.nombre,
       email: this.form.value.email,
@@ -61,12 +64,14 @@ export class RegistroComponent {
 
     console.log('Enviando datos a Django...', nuevoUsuario);
 
+    // Consumimos el servicio para registrar en el Backend
     this.usuarioService.registrarUsuario(nuevoUsuario).subscribe({
       next: (res: any) => {
         console.log('Respuesta del servidor Django:', res);
         this.exitoMsg = '¡Registro exitoso! Redirigiendo a iniciar sesión...';
         this.form.reset();
         
+        // Esperamos 2.5 segundos para que el usuario pueda leer el cartel de éxito
         setTimeout(() => {
           console.log('Redirigiendo...');
           this.irALogin();
