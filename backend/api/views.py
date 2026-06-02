@@ -155,3 +155,32 @@ class ProductoViewSet(APIView):
             serializer.save()
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
+
+class ProductoDetailViewSet(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, pk):
+        try:
+            producto = Producto.objects.get(pk=pk)
+        except Producto.DoesNotExist:
+            return Response({'error': 'No encontrado.'}, status=404)
+        return Response(ProductoSerializer(producto).data)
+
+    def put(self, request, pk):
+        try:
+            producto = Producto.objects.get(pk=pk)
+        except Producto.DoesNotExist:
+            return Response({'error': 'No encontrado.'}, status=404)
+        serializer = ProductoSerializer(producto, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
+
+    def delete(self, request, pk):
+        try:
+            producto = Producto.objects.get(pk=pk)
+        except Producto.DoesNotExist:
+            return Response({'error': 'No encontrado.'}, status=404)
+        producto.delete()
+        return Response(status=204)
