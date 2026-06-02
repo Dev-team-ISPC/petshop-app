@@ -5,61 +5,73 @@
 
         <h2 class="text-center mb-4">Crear cuenta</h2>
 
+        <div *ngIf="errorServer" class="alert alert-danger text-center py-2">{{ errorServer }}</div>
+        <div *ngIf="exitoMsg" class="alert alert-success text-center py-2">{{ exitoMsg }}</div>
+
         <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
 
           <div class="mb-3">
-            <input type="text" formControlName="nombre" class="form-control" placeholder="Ej: Juan Perez">
             <label class="form-label">Nombre completo</label>
-              @if (Nombre?.errors && Nombre?.touched) {
-              @if (Nombre?.hasError('required')) {
-              <p class="text-danger">El nombre es requerido.</p>
-              } @else if (Nombre?.hasError('minlength')) {
-                <p class="text-danger">El nombre debe tener al menos 2 caracteres.</p>
-              }
-            }
+            <input type="text" formControlName="nombre" class="form-control" placeholder="Ej: Juan Perez">
+            <ng-container *ngIf="Nombre?.errors && Nombre?.touched">
+              <p *ngIf="Nombre?.hasError('required')" class="text-danger small mt-1">El nombre es requerido.</p>
+              <p *ngIf="Nombre?.hasError('minlength')" class="text-danger small mt-1">El nombre debe tener al menos 2 caracteres.</p>
+              <p *ngIf="Nombre?.hasError('pattern')" class="text-danger small mt-1">El nombre solo puede contener letras.</p>
+            </ng-container>
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Correo electronico</label>
+            <label class="form-label">Correo electrónico</label>
             <input type="email" formControlName="email" class="form-control" placeholder="nombre@ejemplo.com">
-              @if (Email?.errors && Email?.touched) {
-              @if (Email?.hasError('required')) {
-                <p class="text-danger">El email es requerido.</p>
-              } @else if (Email?.hasError('email')) {
-                <p class="text-danger">El formato del email debe ser valido.</p>
-              }
-            }
+            <ng-container *ngIf="Email?.errors && Email?.touched">
+              <p *ngIf="Email?.hasError('required')" class="text-danger small mt-1">El email es requerido.</p>
+              <p *ngIf="Email?.hasError('email')" class="text-danger small mt-1">El formato del email debe ser válido.</p>
+            </ng-container>
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Contrasena</label>
-            <input type="password" formControlName="password" class="form-control" placeholder="Minimo 8 caracteres">
-              @if (Password?.errors && Password?.touched) {
-              @if (Password?.hasError('required')) {
-                <p class="text-danger">La contrasena es requerida.</p>
-              } @else if (Password?.hasError('minlength')) {
-                <p class="text-danger">La contrasena debe tener al menos 8 caracteres.</p>
-              }
-            }
+            <label class="form-label">Teléfono</label>
+            <input type="text" formControlName="telefono" class="form-control" placeholder="Ej: 3512345678">
+            <ng-container *ngIf="Telefono?.errors && Telefono?.touched">
+              <p *ngIf="Telefono?.hasError('required')" class="text-danger small mt-1">El teléfono es requerido por el sistema.</p>
+              <p *ngIf="Telefono?.hasError('pattern')" class="text-danger small mt-1">Solo se permiten números.</p>
+              <p *ngIf="Telefono?.hasError('maxlength')" class="text-danger small mt-1">Máximo 10 caracteres numéricos.</p>
+            </ng-container>
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Confirmar contrasena</label>
-            <input type="password" formControlName="confirmarPassword" class="form-control" placeholder="Repetir contrasena">
-              @if (ConfirmarPassword?.errors && ConfirmarPassword?.touched) {
-              @if (ConfirmarPassword?.hasError('required')) {
-                <p class="text-danger">Debe confirmar la contrasena.</p>
-              }
-            }
+            <label class="form-label">Dirección de envío</label>
+            <input type="text" formControlName="direccion" class="form-control" placeholder="Ej: Av. Colón 123">
+            <ng-container *ngIf="Direccion?.errors && Direccion?.touched">
+              <p *ngIf="Direccion?.hasError('required')" class="text-danger small mt-1">La dirección es requerida para el perfil.</p>
+            </ng-container>
           </div>
 
-          <button type="submit" class="w-100 btn btn-lg btn-primary">Registrarse</button>
+          <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <input type="password" formControlName="password" class="form-control" placeholder="Mínimo 8 caracteres">
+            <ng-container *ngIf="Password?.errors && Password?.touched">
+              <p *ngIf="Password?.hasError('required')" class="text-danger small mt-1">La contraseña es requerida.</p>
+              <p *ngIf="Password?.hasError('minlength')" class="text-danger small mt-1">La contraseña debe tener al menos 8 caracteres.</p>
+            </ng-container>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Confirmar contraseña</label>
+            <input type="password" formControlName="confirmarPassword" class="form-control" placeholder="Repetir contraseña">
+            <ng-container *ngIf="ConfirmarPassword?.touched">
+              <p *ngIf="ConfirmarPassword?.hasError('required')" class="text-danger small mt-1">Debe confirmar la contraseña.</p>
+              <p *ngIf="form.hasError('noCoincide') && !ConfirmarPassword?.hasError('required')" class="text-danger small mt-1">Las contraseñas no coinciden.</p>
+            </ng-container>
+          </div>
+
+          <button type="submit" class="w-100 btn btn-lg btn-primary" [disabled]="form.invalid">Registrarse</button>
 
         </form>
 
-        <p class="text-center mt-3">
-          Ya tenes cuenta?
-          <a (click)="irALogin()" style="cursor:pointer" class="text-primary">Iniciá sesion</a>
+        <p class="text-center mt-3 mb-0">
+          ¿Ya tenés cuenta?
+          <a (click)="irALogin()" style="cursor:pointer" class="text-primary text-decoration-none">Iniciá sesión</a>
         </p>
 
       </div>

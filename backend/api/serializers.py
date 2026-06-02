@@ -1,10 +1,23 @@
 from rest_framework import serializers
 from .models import Usuario, Mascota, Turno, Vacunacion, Vacuna, Categoria, Producto
+from django.contrib.auth.hashers import make_password
 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = '__all__'
+        fields = ['id_usuario', 'name', 'email', 'rol', 'telefono', 'direccion', 'password']
+        extra_kwargs = {
+            'password': {'write_only': True}
+        }
+
+    def validate_email(self, value):
+        if Usuario.objects.filter(email=value).exists():
+            raise serializers.ValidationError("Email ya registrado")
+        return value
+
+    def create(self, validated_data):
+        validated_data['password'] = make_password(validated_data['password'])
+        return super().create(validated_data)
 
 class MascotaSerializer(serializers.ModelSerializer):
     class Meta:

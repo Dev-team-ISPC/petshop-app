@@ -14,6 +14,9 @@ class Usuario(models.Model):
     )
     telefono = models.CharField(max_length=20)
     direccion = models.CharField(max_length=100)
+    password = models.CharField(max_length=20)
+    def __str__(self):
+        return self.email
 
 class Mascota(models.Model):
     nombre = models.CharField(max_length=100)
