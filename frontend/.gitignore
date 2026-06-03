@@ -6,10 +6,17 @@
 /out-tsc
 /bazel-out
 
-# Node
-/node_modules
+# Node (en cualquier subcarpeta)
+node_modules/
 npm-debug.log
 yarn-error.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.sqlite3
+.env
 
 # IDEs and editors
 .idea/
@@ -35,10 +42,4 @@ yarn-error.log
 /connect.lock
 /coverage
 /libpeerconnection.log
-testem.log
-/typings
-__screenshots__/
-
-# System files
-.DS_Store
-Thumbs.db
+test

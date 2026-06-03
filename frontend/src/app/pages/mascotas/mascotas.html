@@ -1,110 +1,91 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card p-4 shadow-sm">
+<div class="container">
 
-        <h2 class="text-center mb-4">Registrar Mascota</h2>
+  <h2>{{ editandoId ? 'Editar mascota' : 'Registrar mascota' }}</h2>
 
-        <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
+  <p *ngIf="mensaje" class="mensaje">{{ mensaje }}</p>
 
-          <div class="form-floating mb-3">
-            <input
-              type="text"
-              formControlName="nombre"
-              class="form-control"
-              placeholder="Nombre">
+  <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
 
-            <label>Nombre de la mascota</label>
-
-            @if (Nombre?.errors && Nombre?.touched) {
-
-              @if (Nombre?.hasError('required')) {
-                <p class="text-danger">El nombre es requerido.</p>
-              }
-
-              @else if (Nombre?.hasError('minlength')) {
-                <p class="text-danger">El nombre debe tener al menos 2 caracteres.</p>
-              }
-
-              @else if (Nombre?.hasError('maxlength')) {
-                <p class="text-danger">El nombre no puede superar los 30 caracteres.</p>
-              }
-
-              @else if (Nombre?.hasError('pattern')) {
-                <p class="text-danger">Solo se permiten letras y espacios.</p>
-              }
-
-            }
-
-          </div>
-
-          <div class="form-floating mb-3">
-            <select formControlName="especie" class="form-select">
-              <option value="">Selecciona una especie</option>
-              @for (especie of especies; track especie) {
-                <option [value]="especie">{{ especie }}</option>
-              }
-            </select>
-            <label>Especie</label>
-            @if (Especie?.errors && Especie?.touched) {
-              @if (Especie?.hasError('required')) {
-                <p class="text-danger">La especie es requerida.</p>
-              }
-            }
-          </div>
-
-          <div class="form-floating mb-3">
-            <input type="text" formControlName="raza" class="form-control" placeholder="Raza">
-            <label>Raza</label>
-            @if (Raza?.errors && Raza?.touched) {
-
-              @if (Raza?.hasError('required')) {
-                <p class="text-danger">La raza es requerida.</p>
-              }
-
-              @else if (Raza?.hasError('minlength')) {
-                <p class="text-danger">La raza debe tener al menos 2 caracteres.</p>
-              }
-
-              @else if (Raza?.hasError('maxlength')) {
-                <p class="text-danger">La raza no puede superar los 50 caracteres.</p>
-              }
-
-              @else if (Raza?.hasError('pattern')) {
-                <p class="text-danger">Solo se permiten letras y espacios.</p>
-              }
-
-            }
-          </div>
-          <div class="form-floating mb-3">
-            <input type="number" formControlName="edad" class="form-control" placeholder="Edad">
-            <label>Edad (años)</label>
-            @if (Edad?.errors && Edad?.touched) {
-              @if (Edad?.hasError('required')) {
-                <p class="text-danger">La edad es requerida.</p>
-              } @else if (Edad?.hasError('min') || Edad?.hasError('max')) {
-                <p class="text-danger">La edad debe estar entre 0 y 30 años.</p>
-              }
-            }
-          </div>
-
-          <div class="form-floating mb-3">
-            <input type="number" formControlName="peso" class="form-control" placeholder="Peso" step="0.1">
-            <label>Peso (kg)</label>
-            @if (Peso?.errors && Peso?.touched) {
-              @if (Peso?.hasError('required')) {
-                <p class="text-danger">El peso es requerido.</p>
-              } @else if (Peso?.hasError('min') || Peso?.hasError('max')) {
-                <p class="text-danger">El peso debe estar entre 0.1 y 200 kg.</p>
-              }
-            }
-          </div>
-
-          <button type="submit" class="w-100 btn btn-lg btn-primary">Registrar Mascota</button>
-
-        </form>
-
-      </div>
+    <div class="campo">
+      <label>Nombre</label>
+      <input formControlName="nombre" type="text" />
+      <span *ngIf="Nombre?.invalid && Nombre?.touched">Requerido</span>
     </div>
-  </div>
+
+    <div class="campo">
+      <label>Especie</label>
+      <select formControlName="especie">
+        <option value="">Seleccioná...</option>
+        <option *ngFor="let e of especies" [value]="e">{{ e }}</option>
+      </select>
+      <span *ngIf="Especie?.invalid && Especie?.touched">Requerido</span>
+    </div>
+
+    <div class="campo">
+      <label>Raza</label>
+      <input formControlName="raza" type="text" />
+      <span *ngIf="Raza?.invalid && Raza?.touched">Requerido</span>
+    </div>
+
+    <div class="campo">
+      <label>Peso (kg)</label>
+      <input formControlName="peso" type="number" step="0.1" />
+      <span *ngIf="Peso?.invalid && Peso?.touched">Requerido</span>
+    </div>
+
+    <div class="campo">
+      <label>Fecha de nacimiento</label>
+      <input formControlName="fecha_nacimiento" type="date" />
+      <span *ngIf="FechaNacimiento?.invalid && FechaNacimiento?.touched">Requerido</span>
+    </div>
+
+    <div class="campo">
+      <label>ID Dueño</label>
+      <input formControlName="id_dueno" type="number" />
+      <span *ngIf="Dueno?.invalid && Dueno?.touched">Requerido</span>
+    </div>
+
+    <div class="acciones">
+      <button type="submit" [disabled]="cargando">
+        {{ editandoId ? 'Guardar cambios' : 'Registrar' }}
+      </button>
+      <button type="button" *ngIf="editandoId" (click)="cancelarEdicion()">
+        Cancelar
+      </button>
+    </div>
+
+  </form>
+
+  <h2>Mascotas registradas</h2>
+
+  <p *ngIf="mascotas.length === 0">No hay mascotas registradas.</p>
+
+  <table *ngIf="mascotas.length > 0">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Especie</th>
+        <th>Raza</th>
+        <th>Peso</th>
+        <th>Nacimiento</th>
+        <th>ID Dueño</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let m of mascotas">
+        <td>{{ m.nombre }}</td>
+        <td>{{ m.especie }}</td>
+        <td>{{ m.raza }}</td>
+        <td>{{ m.peso }} kg</td>
+        <td>{{ m.fecha_nacimiento }}</td>
+        <td>{{ m.id_dueno }}</td>
+        <td>
+          <button (click)="editarMascota(m)">Editar</button>
+          <button (click)="eliminarMascota(m.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
 </div>
