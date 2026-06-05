@@ -7,11 +7,13 @@ import { IniciarSesion } from './pages/iniciar-sesion/iniciar-sesion';
 import { MascotasComponent } from './pages/mascotas/mascotas';
 import { DashboardComponent } from './pages/dashboard/dashboard';
 import { authGuard } from './guards/auth.guard';
+import { ProductosComponent } from './pages/productos/productos';
 
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'contact', component: Contact },
   { path: 'quienes-somos', component: QuienesSomosComponent },
+  { path: 'productos', component: ProductosComponent, canActivate: [authGuard] },
   { path: 'registro', component: RegistroComponent },
   { path: 'iniciar-sesion', component: IniciarSesion },
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
