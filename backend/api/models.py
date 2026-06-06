@@ -16,7 +16,14 @@ class Usuario(models.Model):
             ('veterinario', 'Veterinario'),
         ],
         default='cliente'
-             )
+    )
+
+    @property
+    def is_authenticated(self):
+        return True
+    
+    def __str__(self):
+        return self.name
 
 class Mascota(models.Model):
     nombre = models.CharField(max_length=100)
@@ -66,3 +73,4 @@ class Producto(models.Model):
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.IntegerField()
     id_categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='productos')
+    imagen = models.URLField(blank=True, null=True)

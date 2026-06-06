@@ -157,7 +157,10 @@ class ProductoViewSet(APIView):
         return Response(serializer.errors, status=400)
 
 class ProductoDetailViewSet(APIView):
-    permission_classes = [IsAuthenticated]
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            return [AllowAny()]
+        return [IsAuthenticated()]
 
     def get(self, request, pk):
         try:
