@@ -10,7 +10,6 @@ import { authGuard } from './guards/auth.guard';
 import { ProductosComponent } from './pages/productos/productos';
 import { AdminProductosComponent } from './pages/admin-productos/admin-productos';
 
-
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'contact', component: Contact },
