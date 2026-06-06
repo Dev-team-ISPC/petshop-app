@@ -19,7 +19,7 @@ export interface Categoria {
 
 @Injectable({ providedIn: 'root' })
 export class ProductosService {
-  private api = 'http://localhost:8000/api';
+  private api = 'http://localhost:8000';
 
   constructor(private http: HttpClient) {}
 
