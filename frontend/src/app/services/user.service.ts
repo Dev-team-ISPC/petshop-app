@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const API_URL = 'http://127.0.0.1:8000';
+const API_URL = 'http://127.0.0.1:8000/api';
 
 export interface User {
   id?: number;
@@ -29,7 +29,7 @@ export class UserService {
   }
 
   register(name: string, email: string, password: string): Observable<User> {
-    return this.http.post<User>(`${API_URL}/users/`, { name, email, password, role: 'cliente' });
+    return this.http.post<User>(`${API_URL}/usuarios/`, { name, email, password, role: 'cliente' });
   }
 
   login(email: string, password: string): Observable<LoginResponse> {
@@ -37,6 +37,6 @@ export class UserService {
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${API_URL}/users/`, this.authHeaders());
+    return this.http.get<User[]>(`${API_URL}/usuarios/`, this.authHeaders());
   }
 }

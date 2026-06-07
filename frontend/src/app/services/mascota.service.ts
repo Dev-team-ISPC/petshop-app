@@ -1,33 +1,32 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class MascotaService {
+@Injectable({ providedIn: 'root' })
+export class MascotasService {
 
-  private apiUrl = 'http://localhost:8000/mascotas/';
+  private apiUrl = 'http://127.0.0.1:8000/mascotas/';
 
   constructor(private http: HttpClient) {}
 
-  // Obtener todas las mascotas
-  obtenerMascotas(): Observable<any> {
-    return this.http.get(this.apiUrl);
+  private headers(): HttpHeaders {
+    const token = localStorage.getItem('token') ?? '';
+    return new HttpHeaders({ Authorization: `Token ${token}` });
   }
 
-  // Crear una mascota
+  obtenerMascotas(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl, { headers: this.headers() });
+  }
+
   crearMascota(mascota: any): Observable<any> {
-    return this.http.post(this.apiUrl, mascota);
+    return this.http.post(this.apiUrl, mascota, { headers: this.headers() });
   }
 
-  // Actualizar una mascota
   actualizarMascota(id: number, mascota: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}${id}/`, mascota);
+    return this.http.put(`${this.apiUrl}${id}/`, mascota, { headers: this.headers() });
   }
 
-  // Eliminar una mascota
   eliminarMascota(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}${id}/`);
+    return this.http.delete(`${this.apiUrl}${id}/`, { headers: this.headers() });
   }
 }
