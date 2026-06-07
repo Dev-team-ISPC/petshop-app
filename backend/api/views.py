@@ -24,8 +24,9 @@ def login(request):
     if not check_password(password, user.password):
         return Response({'error': 'Credenciales inválidas.'}, status=status.HTTP_401_UNAUTHORIZED)
 
-    user.token = secrets.token_hex(32)
-    user.save(update_fields=['token'])
+    if not user.token:
+        user.token = secrets.token_hex(32)
+        user.save(update_fields=['token'])
 
     return Response({'token': user.token, 'user': UsuarioSerializer(user).data})
 
