@@ -5,9 +5,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('api', '0001_initial'),
-    ]
+    dependencies = [('api', '0005_categorias_iniciales')]
 
     operations = [
         migrations.AddField(

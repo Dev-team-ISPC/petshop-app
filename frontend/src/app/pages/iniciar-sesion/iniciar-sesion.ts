@@ -39,6 +39,10 @@ export class IniciarSesion {
       this.userService.login(email, password).subscribe({
         next: (res: LoginResponse) => {
           localStorage.setItem('token', res.token);
+          localStorage.setItem(
+            'usuario',
+            JSON.stringify(res.user)
+          );
           const role = res.user.role ?? 'cliente';
           localStorage.setItem('role', role);
           this.router.navigate(['/dashboard']);
