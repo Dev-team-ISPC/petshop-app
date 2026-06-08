@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductosService } from '../../services/productos.service';
 
@@ -12,11 +12,17 @@ import { ProductosService } from '../../services/productos.service';
 export class ProductosComponent implements OnInit {
   productos: any[] = [];
 
-  constructor(private productosService: ProductosService) {}
+  constructor(
+    private productosService: ProductosService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.productosService.obtenerProductos().subscribe({
-      next: (data) => this.productos = data,
+      next: (data) => {
+        this.productos = data;
+        this.cdr.markForCheck();
+      },
       error: () => console.error('Error al cargar productos.')
     });
   }

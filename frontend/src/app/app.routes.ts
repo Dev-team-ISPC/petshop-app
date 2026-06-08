@@ -9,6 +9,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard';
 import { authGuard } from './guards/auth.guard';
 import { ProductosComponent } from './pages/productos/productos';
 import { AdminProductosComponent } from './pages/admin-productos/admin-productos';
+import { AdminUsuariosComponent } from './pages/admin-usuarios/admin-usuarios';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -20,5 +21,6 @@ export const routes: Routes = [
   { path: 'mascotas', component: MascotasComponent, canActivate: [authGuard] },
   { path: 'productos', component: ProductosComponent },
   { path: 'admin-productos', component: AdminProductosComponent, canActivate: [authGuard] },
+  { path: 'admin-usuarios', component: AdminUsuariosComponent, canActivate: [authGuard] },
   { path: '**', redirectTo: '' }
 ];
