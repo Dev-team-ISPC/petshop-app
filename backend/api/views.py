@@ -191,3 +191,37 @@ class ProductoDetailViewSet(APIView):
             return Response({'error': 'No encontrado.'}, status=404)
         producto.delete()
         return Response(status=204)
+    
+class VacunacionesPorMascotaView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, pk):
+        vacunaciones = Vacunacion.objects.filter(id_mascota=pk)
+        return Response(VacunacionSerializer(vacunaciones, many=True).data)
+
+    def post(self, request, pk):
+        data = request.data.copy()
+        data['id_mascota'] = pk
+        if not data.get('proxima_dosis'):
+            data['proxima_dosis'] = None
+        serializer = VacunacionSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+class TurnosPorMascotaView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, pk):
+        turnos = Turno.objects.filter(id_mascota=pk)
+        return Response(TurnoSerializer(turnos, many=True).data)
+
+    def post(self, request, pk):
+        data = request.data.copy()
+        data['id_mascota'] = pk
+        serializer = TurnoSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)

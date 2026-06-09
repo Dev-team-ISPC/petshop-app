@@ -1,9 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef, NgZone, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { HttpHeaders } from '@angular/common/http';
 import { MascotasService } from '../../services/mascota.service';
-import { UserService } from '../../services/user.service';
+import { UserService, User } from '../../services/user.service';
 import { ProductosService } from '../../services/productos.service';
 
 @Component({
@@ -16,10 +15,14 @@ import { ProductosService } from '../../services/productos.service';
 })
 export class DashboardComponent implements OnInit {
   role = '';
+  usuarioId: number | null = null;
   totalUsuarios = 0;
   totalMascotas = 0;
   totalProductos = 0;
   productos: any[] = [];
+  usuarios: User[] = [];
+  misMascotas: any[] = [];
+  nombreUsuario = ''
 
   constructor(
     private router: Router,
@@ -32,23 +35,34 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = localStorage.getItem('role') ?? 'cliente';
-    console.log('role:', this.role);
-    console.log('token:', localStorage.getItem('token'));
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    this.usuarioId = usuario.id_usuario ?? null;
+    this.nombreUsuario = usuario.name ?? 'usuario';
 
     if (this.role === 'admin') {
       this.ngZone.run(() => {
-        this.userService.obtenerUsuarios().subscribe({
-          next: (data) => { this.totalUsuarios = data.length; this.cdr.markForCheck(); },
+        this.userService.getUsers().subscribe({
+          next: (data) => { this.totalUsuarios = data.length; this.usuarios = data; this.cdr.markForCheck(); },
           error: () => {}
         });
-
         this.mascotasService.obtenerMascotas().subscribe({
           next: (data) => { this.totalMascotas = data.length; this.cdr.markForCheck(); },
           error: () => {}
         });
-
         this.productosService.obtenerProductos().subscribe({
           next: (data) => { this.totalProductos = data.length; this.productos = data; this.cdr.markForCheck(); },
+          error: () => {}
+        });
+      });
+    }
+
+    if (this.role === 'cliente') {
+      this.ngZone.run(() => {
+        this.mascotasService.obtenerMascotas().subscribe({
+          next: (data) => {
+            this.misMascotas = data.filter((m: any) => m.id_dueno === this.usuarioId);
+            this.cdr.markForCheck();
+          },
           error: () => {}
         });
       });

@@ -57,7 +57,7 @@ class Vacuna(models.Model):
 class Vacunacion(models.Model):
     id_vacunacion = models.AutoField(primary_key=True)
     id_mascota = models.ForeignKey(Mascota, on_delete=models.CASCADE, related_name='vacunaciones')
-    id_vacuna = models.ForeignKey(Vacuna, on_delete=models.CASCADE, related_name='vacunaciones')
+    nombre_vacuna = models.CharField(max_length=100)
     fecha_aplicacion = models.DateField()
     proxima_dosis = models.DateField(blank=True, null=True)
     veterinario = models.CharField(max_length=100)

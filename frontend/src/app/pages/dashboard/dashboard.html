@@ -1,13 +1,17 @@
 <div class="container mt-4">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>Panel de control</h2>
+    <button class="btn btn-outline-secondary btn-sm" (click)="cerrarSesion()">Cerrar sesión</button>
   </div>
 
   @if (role === 'admin') {
     <div class="card shadow-sm mb-4">
       <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="mb-0">Resumen</h5>
-        <a routerLink="/admin-usuarios" class="btn btn-primary btn-sm">Gestionar Usuarios</a>
+        <div class="d-flex gap-2">
+          <a routerLink="/admin-usuarios" class="btn btn-primary btn-sm">Gestionar Usuarios</a>
+          <a routerLink="/mascotas" class="btn btn-secondary btn-sm">Gestionar Mascotas</a>
+        </div>
       </div>
       <div class="card-body">
         <div class="row g-3">
@@ -64,17 +68,45 @@
     <div class="row g-3">
       <div class="col-md-6">
         <div class="card shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">Mis mascotas</h5>
-            <p class="text-muted">Sin mascotas registradas.</p>
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Mis mascotas ({{ misMascotas.length }})</h5>
+            <a routerLink="/mascotas" class="btn btn-primary btn-sm">Ver mascotas</a>
+          </div>
+          <div class="card-body p-0">
+            @if (misMascotas.length === 0) {
+              <p class="text-muted text-center py-3">Sin mascotas registradas.</p>
+            } @else {
+              <table class="table table-bordered table-hover mb-0">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Especie</th>
+                    <th>Raza</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (m of misMascotas; track m.id) {
+                    <tr>
+                      <td>{{ m.nombre }}</td>
+                      <td>{{ m.especie }}</td>
+                      <td>{{ m.raza }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            }
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">Productos recomendados</h5>
-            <p class="text-muted">Sin productos disponibles.</p>
+          <div class="card-body text-center py-4">
+            <h4 class="fw-bold">👋 ¡Hola, {{ nombreUsuario }}!</h4>
+            <p class="text-muted mt-2">
+              Tenés <strong>{{ misMascotas.length }}</strong>
+              {{ misMascotas.length === 1 ? 'mascota registrada' : 'mascotas registradas' }}.
+            </p>
+            <a routerLink="/mascotas" class="btn btn-primary mt-2">Ver mis mascotas</a>
           </div>
         </div>
       </div>
